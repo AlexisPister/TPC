@@ -143,25 +143,25 @@ void displayMat(int **mat, int n, int m){
 }
 
 int ** prodMat(int **mat1, int n1, int m1, int **mat2, int n2, int m2){
-    printf("%d", mat2[3][1]);
     int **matFinal = (int**) calloc(n1, sizeof(int*));
-    for (int i = 0; i < n1; i++)
-    {
-        matFinal[i] = (int*) calloc(m2, sizeof(int));
-        for (int j = 0; j < m2; j++)
-        {
-            printf("\n %d , %d : %d", i, j, mat1[i][j]);
+    for (int k = 0; k < n1; k++) {
+        matFinal[k] = (int*) calloc(m2, sizeof(int));
+    }
+
+    for (int i = 0; i < n1; i++) {
+        for (int j = 0; j < m2; j++) {
+            printf("\n %d , %d", i, j);
             matFinal[i][j] = 0;
-            printf(" ok");
-            for (int a = 0; a < m1; a++)
-            {
-                printf("\n a : %d", a);
+            for (int a = 0; a < n2; a++) {
+                printf("\n a: %d", a);
                 printf("\n mat1 : %d", mat1[i][a]);
                 printf("\n mat2 : %d", mat2[a][j]);
-                matFinal[i][j] += mat1[i][a] * mat2[a][j];
+                matFinal[i][j] = matFinal[i][j] + mat1[i][a] * mat2[a][j];
             }
         }
     }
+
+    return matFinal;
 }
 
 
@@ -202,17 +202,17 @@ int main(int argc, char *argv[]){
     // free(tab2);
 
     // Question 4 : matrices
-    int **mat1 = genMat(3, 4, 10, 2);
-    int **mat2 = genMat(4, 2, 10, 2);
+    int **matr1 = genMat(2, 2, 10, 2);
+    int **matr2 = genMat(2, 2, 10, 2);
 
     
 
-    displayMat(mat1, 3, 4);
-    displayMat(mat2, 4, 2);
+    displayMat(matr1, 2, 2);
+    displayMat(matr2, 2, 2);
 
-    int **matfinal = prodMat(mat1, 3, 4, mat2, 4, 2);
+    int **matfinal = prodMat(matr1, 2, 2, matr2, 2, 2);
 
-    displayMat(matfinal, 3, 2);
+    displayMat(matfinal, 2, 2);
     
 
 }
